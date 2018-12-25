@@ -1,0 +1,26 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h4 class="modal-title" id="myModalLabel">Confirm Minus</h4>
+		</div>
+
+		<div class="modal-body">
+			<p>
+				You are about to remove a {{setminus.rmName}} <b><em>{{setminus.rmObject|json}}
+				</em></b> from {{setminus.rmFrom}} have id <b><em>{{setminus.rmFromId}}
+				</em></b>, this procedure is irreversible.
+			</p>
+			<p>Do you want to proceed?</p>
+			<p class="debug-url"></p>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			<a ng-click="minus()" class="btn btn-danger btn-ok"
+				style="color: white;">Minus</a>
+		</div>
+	</div>
+</div>

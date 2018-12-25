@@ -1,0 +1,197 @@
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<div class="container">
+
+	<div class="row">
+		<div class="col-12 col-md-6 col-lg-4 col-xl-3">
+			<div class="monthPicker">
+				<div class="monthPicker-top">
+					<button ng-click="clickleft()" class="monthPicker-top-action btn">
+						<span class="fa fa-angle-left"></span>
+					</button>
+					<button style="width: 200px; max-width: 200px;"
+						ng-click="changeView($event)" class="monthPicker-top-current btn">
+						<span class="currentYear"> {{selectYear}}-{{selectMonth}}</span> <span
+							class="selectYear" style="display: none;">{{selectYear}}-{{selectYear+11}}</span>
+					</button>
+					<button ng-click="clickright()" class="monthPicker-top-action btn">
+						<span class="fa fa-angle-right"></span>
+					</button>
+				</div>
+				<div class="monthPicker-body" id="month">
+					<a ng-repeat="x in months" ng-click="chooseMonth($event)"
+						class="monthPicker-body-month"><span>{{x}}</span></a>
+					<!-- 						 <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='2'><span>Feb</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='3'><span>Mar</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='4'><span>Apr</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='5'><span>May</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='6'><span>June</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='7'><span>July</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='8'><span>Aug</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='9'><span>Sep</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='10'><span>Oct</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='11'><span>Nov</span></a> <a -->
+					<!-- 						ng-click="chooseMonth($event)" class="monthPicker-body-month" -->
+					<!-- 						data-value='12'><span>Dec</span></a> -->
+				</div>
+				<div class="monthPicker-body" id="year" style="display: none">
+					<a ng-click="chooseYear($event)"
+						ng-repeat="x in range(selectYear,selectYear+11)"
+						class="monthPicker-body-month"><span>{{x}}</span></a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function() {
+		var a = $(".monthPicker-body>a");
+
+		for (var i = 0; i < a.length; i++) {
+			a[i].addEventListener("click", function(event) {
+				event.preventDefault()
+			});
+
+		}
+
+	});
+</script>
+<style>
+.white {
+	background-color: white;
+	color: #008080;
+}
+
+.monthPicker-body-month:focus {
+	background-color: white;
+	color: #008080;
+}
+
+.monthPicker-body-month:active{
+	background-color: white;
+	color: #008080;
+}
+
+.monthPicker-top-action:focus {
+	background-color: white;
+	color: #008080;
+}
+
+.monthPicker {
+	background: #33a0a0;
+	box-shadow: 0 1px 5px #696969;
+}
+
+.monthPicker-top {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 20px 20px;
+	border-bottom: 1px solid #fff;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+
+.monthPicker-top-action {
+	font-size: 2rem;
+	position: relative;
+	width: 45px;
+	height: 45px;
+	color: #fff;
+	border-radius: 50%;
+	background: none;
+}
+
+.monthPicker-top-action span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.monthPicker-top-action:hover {
+	background: white;
+	color: #008080;
+}
+
+.monthPicker-top-current {
+	color: #008080;
+	background: #fff;
+}
+
+.monthPicker-top-current .selectYear {
+	display: none;
+	color: red;
+}
+
+.monthPicker-top-current .currentYear {
+	color: red;
+}
+
+.monthPicker-top-current:hover .currentYear {
+	display: none;
+}
+
+.monthPicker-top-current:focus .currentYear {
+	display: none;
+}
+
+.monthPicker-top-current:hover .selectYear {
+	display: inline;
+}
+
+.monthPicker-top-current:focus .selectYear {
+	display: inline;
+}
+
+.monthPicker-body {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 1rem;
+	text-align: center;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
+}
+
+.monthPicker-body-month {
+	line-height: 35px;
+	height: 35px;
+	margin: 5px;
+	vertical-align: middle;
+	text-decoration: none;
+	color: #008080;
+	color: #fff;
+	border-radius: 3px;
+	background: #fff;
+	background: none;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 calc(100%/ 3 - 10px);
+	flex: 0 0 calc(100%/ 3 - 10px);
+}
+
+.monthPicker-body-month:hover {
+	text-decoration: none;
+	color: #008080;
+	background: #fff;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, .34);
+}
+</style>

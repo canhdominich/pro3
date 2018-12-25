@@ -1,0 +1,11 @@
+<div ng-model="selectsearch"  style="width: 100%;"
+	custom-select="t as t.classname for t in classroom | filter: { classname: $searchTerm }"
+	ng-model="classchoose">
+
+	<div class="pull-left">
+		<strong>{{ t.classname }}</strong><br /> <span>{{ t.year }}</span>
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+<link rel="stylesheet" href="../app/style/style.css">

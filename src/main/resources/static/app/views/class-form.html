@@ -1,0 +1,77 @@
+
+<div class="modal-dialog">
+
+	<!-- Modal content-->
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Modal Header</h4>
+		</div>
+		<div class="modal-body">
+			<!-- 								<p>Some text in the modal.</p> -->
+			<!-- 								<div class=" col-md-6 col-md-offset-3"> -->
+			<div class="panel panel-default">
+				<div class="panel-heading">Class Form</div>
+				<div class="panel-body">
+					<div class="col-md-12">
+						<form name="classForm">
+
+							<div class="form-group"
+								ng-class="{ 'has-error': classForm.classname.$invalid && classForm.classname.$dirty }">
+								<!-- 													<label for="name">Name:</label> -->
+								<label class="image-replace classname" for="classname">Classname</label>
+								<input ng-value="edit.classname" ng-model="room.classname"
+									placeholder="Classname" type="text" required
+									class="form-control" id="classname" name="classname">
+							</div>
+
+							<div class="form-group"
+								ng-class="{ 'has-error': classForm.grade.$invalid && classForm.grade.$dirty }">
+								<!-- 													<label for="username">Username:</label> -->
+								<label class="image-replace grade" for="grade">Grade</label> <input
+									ng-value="edit.grade" ng-model="room.grade" placeholder="Grade"
+									type="text" required class="form-control" id="grade"
+									name="grade">
+							</div>
+
+							<div class="form-group"
+								ng-class="{ 'has-error': classForm.schoolyear.$invalid && classForm.schoolyear.$dirty }">
+								<!-- 													<label for="username">Username:</label> -->
+								<label class=" image-replace schoolyear" for="schoolyear">School
+									Year</label> <input ng-value="edit.schoolyear"
+									ng-model="room.schoolyear" placeholder="School Year"
+									type="text" required class="form-control" id="schoolyear"
+									name="schoolyear">
+							</div>
+
+							<div style="display: flow-root;">
+
+								<input data-bind-file="" data-ng-model="theFile" id="file"
+									type="file" name="files[]" class="inputfile"
+									data-multiple-caption="{count} files selected" multiple>
+								<label ng-show="createClass"
+									style="border: solid; border-width: 1px;" for="file" href="#"
+									class="btn btn-primary"><span><i
+										class="fas fa-cloud-upload-alt"></i> </span><span id="choose">File</span></label>
+								<button style="border: solid; border-width: 1px;"
+									ng-click="submit()" type="submit" class="btn btn-primary"
+									ng-disabled="(classForm.classname.$invalid )||(classForm.grade.$invalid)||(classForm.schoolyear.$invalid)">
+									<span>{{action}}</span>
+								</button>
+
+							</div>
+
+
+							<div class="alert alert-info margin-top-5" ng-show="message">{{message}}</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- 								</div> -->
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+
+</div>

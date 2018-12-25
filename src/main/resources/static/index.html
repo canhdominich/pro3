@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JWT Demo</title>
+
+<!-- importing the bootstrap styles -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"> -->
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script> -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jquery -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<!-- Font Awesome JS -->
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+	integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+	crossorigin="anonymous"></script>
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+	integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet prefetch"
+	href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="../app/style/style4.css">
+
+<!-- lib -->
+<!-- <script type="text/javascript" src="app/lib/jquery-3.3.1.min.js"></script> -->
+<!-- <link rel="stylesheet" href="app/lib/bootstrap.css"> -->
+<!-- <link rel="stylesheet" href="app/lib/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="app/lib/datepicker.css"> -->
+<!-- <link rel="stylesheet" href="app/lib/font-awesome.min.css"> -->
+<!-- 	including lib -->
+
+<!-- <script type="text/javascript" src="app/lib/angular.min.js"></script> -->
+<!-- <script type="text/javascript" src="app/lib/angular-ui-router.js"></script> -->
+<!-- <script type="text/javascript" src="app/lib/angular-ui-router.min.js"></script> -->
+<!-- <script type="text/javascript" src="app/lib/bootstrap-datepicker.js"></script> -->
+<!-- <script type="text/javascript" src="app/lib/bootstrap.js"></script> -->
+<!-- <script type="text/javascript" src="app/lib/bootstrap.min.js"></script> -->
+<!-- <script type="text/javascript" src="app/lib/fontawesome.js"></script> -->
+<!-- <script type="text/javascript" src="app/lib/solid.js"></script> -->
+<!-- <script type="text/javascript" src="app/lib/xlsx.core.min.js"></script> -->
+<!-- <script type="text/javascript" src="app/lib/xlsx.core.min1.js"></script> -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+
+				$('.modal').on(
+						{
+							'show.bs.modal' : function() {
+								var idx = $('.modal:visible').length;
+								$(this).css('z-index', 1040 + (10 * idx));
+							},
+							'shown.bs.modal' : function() {
+								var idx = ($('.modal:visible').length) - 1; // raise backdrop after animation.
+								$('.modal-backdrop').not('.stacked').css(
+										'z-index', 1039 + (10 * idx)).addClass(
+										'stacked');
+							},
+							'hidden.bs.modal' : function() {
+								if ($('.modal:visible').length > 0) {
+									// restore the modal-open class to the body element, so that scrolling works
+									// properly after de-stacking a modal.
+									setTimeout(
+											function() {
+												$(document.body).addClass(
+														'modal-open');
+											}, 0);
+								}
+							}
+						});
+			});
+</script>
+</head>
+
+<style>
+.content {
+	width: 100%;
+	padding: 20px;
+	min-height: 100vh;
+	transition: all 0.3s;
+}
+
+.margin-top-5 {
+	margin-top: 10px;
+}
+
+.panel-scroll {
+	height: 300px;
+	overflow-y: auto;
+}
+</style>
+<body ng-app="JWTDemoApp">
+	<div class="wrapper">
+
+		<!-- Sidebar  -->
+		<div ui-view="sidebar-school"></div>
+		<!-- View for adding the navigation bar -->
+		<!-- 		<div ui-view="nav"></div> -->
+		<div class="container" ui-view="login" style="z-index: 1;"></div>
+
+		<div class="container " id="content">
+			<!-- Main view for showing all views -->
+			<div ui-view="nav"></div>
+			<div ui-view="content" class=""></div>
+
+		</div>
+	</div>
+
+	<!-- Including Scripts -->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+
+	<!-- Including jquery and twitter bootstrap -->
+	<!-- 	<script -->
+	<!-- 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+
+
+	<!-- Including the app.js and route.js  -->
+	<script type="text/javascript" src="app/app.js"></script>
+	<script type="text/javascript" src="app/route.js"></script>
+
+	<!-- Including services -->
+	<script type="text/javascript" src="/app/controllers/customSelect.js"></script>
+	<script type="text/javascript" src="app/services/auth-service.js"></script>
+	<script type="text/javascript" src="app/services/selected-service.js"></script>
+
+	<!-- Including controllers -->
+	<script type="text/javascript" src="app/controllers/employee-table.js"></script>
+	<script type="text/javascript" src="app/controllers/teacher-table.js"></script>
+	<script type="text/javascript" src="app/controllers/confirm-minus.js"></script>
+	<script type="text/javascript" src="app/controllers/class-form.js"></script>
+	<script type="text/javascript" src="app/controllers/mark.js"></script>
+	<script type="text/javascript" src="app/controllers/search-box.js"></script>
+	<script type="text/javascript" src="app/controllers/student-form.js"></script>
+	<script type="text/javascript" src="app/controllers/user-form.js"></script>
+	<script type="text/javascript" src="app/controllers/rollcall.js"></script>
+	<script type="text/javascript"
+		src="app/controllers/datepicker-month.js"></script>
+	<script type="text/javascript"
+		src="app/controllers/confirm-deletion.js"></script>
+	<script type="text/javascript" src="app/controllers/student-tab.js"></script>
+	<script type="text/javascript" src="app/controllers/student-table.js"></script>
+	<script type="text/javascript" src="app/controllers/class-tab.js"></script>
+	<script type="text/javascript" src="app/controllers/class-table.js"></script>
+	<script type="text/javascript" src="app/controllers/sidebar-school.js"></script>
+	<script type="text/javascript" src="app/controllers/user-table.js"></script>
+	<script type="text/javascript" src="app/controllers/school.js"></script>
+	<script type="text/javascript" src="app/controllers/nav.js"></script>
+	<script type="text/javascript" src="app/controllers/login.js"></script>
+	<script type="text/javascript" src="app/controllers/users.js"></script>
+	<script type="text/javascript" src="app/controllers/home.js"></script>
+	<script type="text/javascript" src="app/controllers/page-not-found.js"></script>
+	<script type="text/javascript" src="app/controllers/access-denied.js"></script>
+	<script type="text/javascript" src="app/controllers/register.js"></script>
+</body>
+</html>

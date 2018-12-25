@@ -1,0 +1,122 @@
+<div class="modal-dialog">
+
+	<!-- Modal content-->
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Modal Header</h4>
+		</div>
+		<div class="modal-body">
+			<!-- 								<p>Some text in the modal.</p> -->
+			<!-- 								<div class=" col-md-6 col-md-offset-3"> -->
+			<div class="panel panel-default">
+				<div class="panel-heading">User Form</div>
+				<div class="panel-body">
+					<div class="col-md-12">
+						<form name="userForm">
+
+							<div class="form-group"
+								ng-class="{ 'has-error': userForm.username.$invalid && userForm.username.$dirty }">
+								<!-- 													<label for="name">Name:</label> -->
+								<label class="image-replace username" for="username">Username</label>
+								<input ng-value="edit.username" placeholder="Username"
+									type="text" required class="form-control"
+									ng-model="appUser.username" id="username" name="username">
+							</div>
+
+							<div class="form-group"
+								ng-class="{ 'has-error': userForm.email.$invalid && userForm.email.$dirty }">
+								<!-- 													<label for="username">Username:</label> -->
+								<label class="image-replace email" for="email">E-mail</label> <input
+									ng-value="edit.mail" placeholder="E-mail" type="text" required
+									class="form-control" ng-model="appUser.mail" id="email"
+									name="email">
+							</div>
+
+							<div class="form-group"
+								ng-class="{ 'has-error': userForm.pass.$invalid && userForm.pass.$dirty }">
+								<!-- 													<label for="pwd">Password:</label>  -->
+								<label class="image-replace password" for="pass">Password</label>
+								<input ng-value="edit.pass" placeholder="Password"
+									type="password" required class="form-control" id="pass"
+									ng-model="appUser.pass" name="pass">
+							</div>
+
+							<div class="form-group"
+								ng-class="{ 'has-error': userForm.confirmPassword.$invalid && userForm.confirmPassword.$dirty }">
+								<!-- 													<label for="cpwd">Confirm Password:</label>  -->
+								<label class="image-replace password" for="confirmPassword">Confirm
+									Password</label> <input ng-value="edit.pass"
+									placeholder="Confirm Password" type="password"
+									name="confirmPassword" required class="form-control"
+									id="confirmPassword" ng-model="confirmPassword">
+							</div>
+
+							<div class="alert alert-warning margin-top-5"
+								ng-show="confirmPassword != appUser.pass ">Password Not
+								Matching</div>
+							<div class="form-group"
+								ng-class="{ 'has-error': userForm.role.$invalid && userForm.role.$dirty }">
+								<label for="sel1">Select role:</label> <select
+									ng-value="edit.role" ng-model="appUser.role"
+									class="form-control" id="sel1" name="role">
+									<option value="school">School</option>
+									<option value="teacher">Teacher</option>
+									<option value="parent">Parent</option>
+									<option value="dayboarder">Day-boarder Teacher</option>
+								</select>
+							</div>
+							<div style="display: flow-root;">
+
+								<input add-user="" data-ng-model="theFile" id="fileUser"
+									type="file" name="files[]" class="inputfile"
+									data-multiple-caption="{count} files selected" multiple>
+								<label ng-show="createUser"
+									style="border: solid; border-width: 1px;" for="fileUser" href="#"
+									class="btn btn-primary"><span><i
+										class="fas fa-cloud-upload-alt"></i> </span><span id="chooseUser">File</span></label>
+								<button style="border: solid; border-width: 1px;"
+									ng-click="submit()" type="submit" class="btn btn-primary"
+									ng-disabled="(confirmPassword != appUser.pass)||(userForm.role.$invalid )||(userForm.pass.$invalid)||(userForm.username.$invalid)">
+									<span>{{action}}</span>
+								</button>
+
+							</div>
+
+
+							<div class="alert alert-info margin-top-5" ng-show="message">{{message}}</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- 								</div> -->
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+
+</div>
+
+<script>
+	var inputs = document.querySelectorAll('.inputfile');
+	Array.prototype.forEach.call(inputs, function(input) {
+		var label = input.nextElementSibling, labelVal = label.innerHTML;
+
+		input.addEventListener('change', function(e) {
+			var fileName = '';
+			if (this.files && this.files.length > 1)
+				fileName = (this.getAttribute('data-multiple-caption') || '')
+						.replace('{count}', this.files.length);
+			else
+				fileName = e.target.value.split('\\').pop();
+
+			if (fileName)
+				label.querySelector('#chooseUser').innerHTML = fileName;
+			else
+				label.innerHTML = labelVal;
+		});
+	});
+</script>
+<script lang="javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.12.4/xlsx.core.min.js"></script>
